@@ -6,7 +6,7 @@ let taskDiv = document.querySelector(".tasks");
 
 let arrayOfTasks = [];
 
-
+getDataFromLocalStorage()
 
 // add task
 
@@ -75,4 +75,13 @@ arrayOfTasks.forEach(task => {
 
 function addDataToLocalStorage(arrayOfTasks){
     window.localStorage.setItem("tasks", JSON.stringify(arrayOfTasks));
+}
+
+
+function getDataFromLocalStorage(){
+    let data =window.localStorage.getItem("tasks");
+    if(data){
+        let tasks = JSON.parse(data);
+        console.log(tasks);
+    }
 }
