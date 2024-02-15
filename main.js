@@ -32,7 +32,14 @@ taskDiv.addEventListener("click",function(e){
         deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
         //Remove Elemnt from page
         e.target.parentElement.remove();
-        
+    }
+    //Task Element
+    if(e.target.classList.contains("task")){
+        //Toggle Completed for the task
+        toggleStatusTaskWith(e.target.getAttribute("data-id"));
+
+        //Toggle Done Class
+        e.target.classList.toggle("done");
     }
 })
 
@@ -112,4 +119,15 @@ function deleteTaskWith(taskId){
     addDataToLocalStorage(arrayOfTasks);
     
     
+}
+
+
+function toggleStatusTaskWith(taskId){
+    
+    for(let i=0; i<arrayOfTasks.length; i++){
+        if(arrayOfTasks[i].id == taskId){
+            arrayOfTasks[i].completed ==false ? arrayOfTasks[i].completed= true : arrayOfTasks[i].completed= false;
+        }
+    }
+    addDataToLocalStorage(arrayOfTasks);
 }
