@@ -32,6 +32,8 @@ function addTaskToArray(taskText){
 
     // Add Tasks To Page
     addElementsToPageFrom(arrayOfTasks);
+
+    
 }
 
 
@@ -47,20 +49,22 @@ arrayOfTasks.forEach(task => {
     //create main div
     let div=document.createElement("div");
     div.className="task";
+
+    //check if the task is done
+    if(task.completed){
+        div.className="task done";
+    }
     div.setAttribute('data-id',task.id);
     div.appendChild(document.createTextNode(task.title));
 
     //create delete button
     let span = document.createElement("span");
     span.className="delete";
-
-    //Apprnd button to the main div
     span.appendChild(document.createTextNode("Delete"));
+    //Apprnd button to the main div
     div.appendChild(span);
-
+    // Add tasks div to tasks container 
     taskDiv.appendChild(div);
-
-   
 
 });
 
