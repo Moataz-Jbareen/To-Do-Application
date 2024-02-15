@@ -6,6 +6,12 @@ let taskDiv = document.querySelector(".tasks");
 
 let arrayOfTasks = [];
 
+// check if theres tasks in local storage
+
+if(localStorage.getItem("tasks")){
+    arrayOfTasks = JSON.parse(localStorage.getItem("tasks"));
+}
+
 getDataFromLocalStorage()
 
 // add task
@@ -17,6 +23,18 @@ submit.onclick=function(){
     }
 }
 
+//Click On Task Element
+
+taskDiv.addEventListener("click",function(e){
+    if(e.target.classList.contains("delete")){
+
+        //remove task from local storage
+        deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
+        //Remove Elemnt from page
+        e.target.parentElement.remove();
+        
+    }
+})
 
 
 function addTaskToArray(taskText){
@@ -82,6 +100,16 @@ function getDataFromLocalStorage(){
     let data =window.localStorage.getItem("tasks");
     if(data){
         let tasks = JSON.parse(data);
-        console.log(tasks);
+        addElementsToPageFrom(tasks);
+       
     }
+}
+
+
+function deleteTaskWith(taskId){
+    // localStorage.removeItem(taskIdS);
+    arrayOfTasks = arrayOfTasks.filter((task)=>task.id != taskId)
+    addDataToLocalStorage(arrayOfTasks);
+    
+    
 }
