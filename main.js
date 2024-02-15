@@ -30,7 +30,39 @@ function addTaskToArray(taskText){
     //push task to array of tasks
     arrayOfTasks.push(task);
 
-    console.log(arrayOfTasks)
-    
+    // Add Tasks To Page
+    addElementsToPageFrom(arrayOfTasks);
+}
+
+
+
+
+
+
+function addElementsToPageFrom(arrayOfTasks){
+// Empty the tasks div
+taskDiv.innerHTML="";
+//looping on the array of tasks
+arrayOfTasks.forEach(task => {
+    //create main div
+    let div=document.createElement("div");
+    div.className="task";
+    div.setAttribute('data-id',task.id);
+    div.appendChild(document.createTextNode(task.title));
+
+    //create delete button
+    let span = document.createElement("span");
+    span.className="delete";
+
+    //Apprnd button to the main div
+    span.appendChild(document.createTextNode("Delete"));
+    div.appendChild(span);
+
+    taskDiv.appendChild(div);
+
+   
+
+});
+
 
 }
