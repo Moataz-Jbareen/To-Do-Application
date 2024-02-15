@@ -33,7 +33,9 @@ function addTaskToArray(taskText){
     // Add Tasks To Page
     addElementsToPageFrom(arrayOfTasks);
 
-    
+    // Add Tasks to local storage
+    addDataToLocalStorage(arrayOfTasks);
+    //
 }
 
 
@@ -67,6 +69,10 @@ arrayOfTasks.forEach(task => {
     taskDiv.appendChild(div);
 
 });
+}
 
 
+
+function addDataToLocalStorage(arrayOfTasks){
+    window.localStorage.setItem("tasks", JSON.stringify(arrayOfTasks));
 }
